@@ -1,0 +1,1039 @@
+/* ================================
+   ហាងម្ហូប BITES — style.css
+   ================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #fdfcfb;       /* Off-white / Cream */
+  --surface: #ffffff;
+  --surface2:#f4f1ee;       /* Soft Sand color */
+  --card:    #ffffff;
+  --border:  #e0ddd9;
+  --accent:  #32e622;       /* Burnt Orange (Appetizing) */
+  --accent2: #27ae60;       /* Fresh Leaf Green */
+  --text:    #2c3e50;       /* Deep Navy/Grey text */
+  --muted:   #7f8c8d;
+  --radius:    20px;
+  --radius-sm: 12px;
+  --shadow:    0 12px 48px rgba(0,0,0,0.6);
+  --ease:      cubic-bezier(0.4,0,0.2,1);
+}
+/* ── HEADER ── */
+header {
+  position: absolute; /* ប្តូរពី fixed មក absolute ដើម្បីកុំឱ្យអូសតាម */
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  background: #1a1a1a !important; /* ពណ៌ខ្មៅដិតស្អាត */
+  border-bottom: 1px solid #333;
+  padding: 10px 0;
+  z-index: 1000 !important; 
+  pointer-events: auto; /* ធានាថាវាអាចទទួលការចុចបាន */
+}
+.user-toggle-btn {
+    background: #a6e7a0; /* ពណ៌បៃតងខ្ចី */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+.header-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 30px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+html { scroll-behavior: smooth; }
+body, button, input, textarea, h1, h2, h3, h4, .nav-links a {
+  font-family: 'Kantumruy Pro', sans-serif;
+  font-weight: 400; /* You can change this to 600 or 700 for bold */
+  font-stretch: semi-condensed; /* This activates the specific width */
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Kantumruy Pro', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+
+.logo {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none;
+  flex-shrink: 0;
+  filter: brightness(1.5) saturate(1.8); 
+ 
+}
+.logo-flame { font-size: 1.5rem; }
+.logo-text {
+  font-family: 'Kantumruy Pro';
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.nav-links a {
+  background: var(--accent); /* ប្តូរពណ៌ទៅជាពណ៌បៃតង/មាស ពេល Hover */
+  color: #000; /* ប្តូរពណ៌អក្សរមកខ្មៅវិញឱ្យច្បាស់ */
+  border-color: var(--accent);
+  transform: translateY(-2px); /* ឱ្យវាហើរបន្តិចមើលទៅទំនើប */
+  
+  /* បង្កើតប្រអប់ជុំវិញអក្សរ */
+  padding: 8px 16px;
+  border: 1px solid rgba(112, 211, 31, 0.1); /* បន្ទាត់ប្រអប់ស្ដើងៗ */
+  border-radius: 8px; /* ធ្វើឱ្យជ្រុងប្រអប់មូលបន្តិច */
+  background: #a6e7a0; /* ពណ៌ផ្ទៃក្នុងប្រអប់ស្រាលបំផុត */
+  
+  transition: all 0.3s ease;
+}
+/* Animated Underline on Hover */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav-links a:hover::after, 
+.nav-links a.nav-active::after {
+  width: 100%;
+}
+
+.nav-links a:hover, 
+.nav-links a.nav-active { 
+  color: #ffffff; 
+}
+.nav-links a:hover, .nav-links a.nav-active { color: #ffffff; }
+/* បន្ថែមក្នុង :root ប្រសិនបើមិនទាន់មាន */
+:root {
+    --accent: #32e622; 
+}
+
+.cart-btn {
+    display: flex; /* ឱ្យ Icon និង លេខនៅជួរជាមួយគ្នា */
+    align-items: center;
+    gap: 8px;
+    background: #a6e7a0 !important; /* បង្ខំឱ្យចេញពណ៌បៃតង */
+    color: #000 !important; /* អក្សរខ្មៅ */
+    padding: 13px 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    z-index: 10001; /* ឱ្យខ្ពស់ជាង Header */
+}
+
+.cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(50, 230, 34, 0.4);
+}
+
+.cart-count {
+    background: #000 !important; /* លេខ Cart ដាក់ផ្ទៃខ្មៅវិញទើបស្អាត */
+    color: #fff !important; /* លេខពណ៌ស */
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  max-width: 1300px; margin: 0 auto;
+  padding: 100px 36px 60px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 64px;
+  position: relative;
+}
+.hero-glow {
+  position: fixed; border-radius: 50%;
+  filter: blur(120px); pointer-events: none; z-index: -1;
+}
+.g1 {
+  width: 600px; height: 600px; top: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(245,166,35,0.08), transparent 70%);
+}
+.g2 {
+  width: 500px; height: 500px; bottom: 0; left: -100px;
+  background: radial-gradient(circle, rgba(232,87,10,0.06), transparent 70%);
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 1.2rem; color: var(--accent); font-weight: 700;
+  letter-spacing: 0.08em; margin-bottom: 20px; text-transform: uppercase;
+  color: #7f8c8d;
+}
+.dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+:root {
+  --primary-gold: #d4af37; /* Modern gold vs. bright orange */
+  --text-main: #ffffff;
+  --bg-dark: #0a0a0a;
+}
+
+.hero-title {
+  font-family: 'Kantumruy Pro', 'Noto Sans Khmer', sans-serif; /* A more modern, sleek font choice */
+  font-size: clamp(3rem, 8vw, 7.5rem); 
+  font-weight: 700;
+  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+}
+
+.hero-title span {
+  display: block;
+}
+/* កែសម្រួល Sidebar */
+.user-sidebar {
+    position: fixed;
+    left: -300px; 
+    top: 0; /* បើចង់ឱ្យលិចពីលើគេបង្អស់ទុក 0 តែបើចង់ឱ្យនៅក្រោម Header ដាក់កម្ពស់តាម Header */
+    width: 280px;
+    height: 100vh; /* កម្ពស់ពេញអេក្រង់ */
+    background: #ffffff; /* ប្រាកដថាពណ៌ស */
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    transition: 0.3s ease;
+    z-index: 2000; /* កម្ពស់ស្រទាប់ */
+    padding: 20px;
+    overflow-y: auto; /* បើ Menu ច្រើនអាច Scroll បាន */
+    display: block !important; /* បង្ខំឱ្យបង្ហាញ content */
+}
+
+/* ពេល Active */
+.user-sidebar.active {
+    left: 0;
+}
+
+/* បញ្ហាអត់ឃើញអក្សរ អាចមកពីពណ៌អក្សរពណ៌សដែរ */
+.sidebar-menu li {
+    color: #333333; /* កំណត់ពណ៌អក្សរឱ្យដិត */
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    margin-bottom: 10px;
+}
+
+.role-badge {
+    font-size: 0.7rem;
+    background: #e0e0e0;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.sidebar-menu li {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.sidebar-menu li:hover {
+    background: var(--surface2);
+    color: var(--accent);
+}
+
+.toggle-role-btn {
+    margin-top: 10px;
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* The 'Delicious' accent */
+.hero-title {
+  font-family: 'Kantumruy Pro', sans-serif;
+  font-size: clamp(2rem, 5vw, 5rem);
+  font-weight: 800;
+  display: flex;
+  gap: 0.3em; /* Creates perfect, balanced spacing */
+  align-items: baseline;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.hero-title .accent {
+  color: #43ff5c; /* A soft, modern vibrant orange */
+  position: relative;
+  font-family: 'kantumruy pro', sans-serif;
+  font-size: 140px;
+  font-weight: 1000;
+  line-height: 2;
+}
+
+/* 🔥 background image behind text */
+.hero-title .accent::before {
+  content: "";
+  position: absolute;
+  top: 54%;
+  left: 125%;
+  transform: translate(-50%, -50%);
+
+  width: 450px;
+  height: 450px;
+
+  background: url('../assets/Overal/chef1.png') no-repeat center;
+  background-size: contain;
+
+  z-index: -1;
+
+  /* 🔥 fade bottom */
+  -webkit-mask-image: linear-gradient(to bottom, 
+    rgba(0,0,0,1) 70%, 
+    rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom, 
+    rgba(0,0,0,1) 70%, 
+    rgba(0,0,0,0) 100%);
+}
+  
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-title span {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.hero-title .accent { animation-delay: 0.2s; }
+.hero-title .suffix { animation-delay: 0.4s; }
+.hero-desc { color: #0d0c0a; font-size: 1.05rem; line-height: 1.8; margin-bottom: 36px; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn-primary {
+  display: flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #0d0c0a; border: none; border-radius: 50px;
+  padding: 14px 28px; font-family: 'Hanuman', sans-serif;
+  font-size: 1rem; font-weight: 700; cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(245,166,35,0.35); }
+
+.btn-ghost {
+  display: flex; align-items: center; gap: 10px;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text); border-radius: 50px;
+  padding: 14px 28px; font-family: 'Hanuman', sans-serif;
+  font-size: 1rem; cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Hero cards grid */
+.hero-right { display: flex; align-items: center; justify-content: center; }
+.hero-cards {
+  display: grid;
+  /* Change '130px' to a larger number like '150px' or '180px' */
+  grid-template-columns: repeat(3, 150px); 
+  grid-template-rows: repeat(2, 150px);
+  gap: 20px;
+  
+}
+.hcard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; cursor: default;
+  transition: all 0.35s var(--ease);
+}
+.hcard span img { 
+  border-radius: 100px;
+  width: 100%;       /* Fills the width of the block */
+  height: 100%;      /* Fills the height of the block */
+  object-fit: cover; /* Keeps the image proportional without stretching */
+  display: block;    /* Removes any default spacing issues */
+}
+.hcard p { 
+  font-size: 20px; 
+  color: var(--text); 
+  font-weight: 700; 
+  padding: 1px 2px; /* Adds space for the name below the full image */
+}
+.hcard:hover {
+  border-color: var(--accent);
+  transform: translateY(-0.8px) scale(1.04);
+  background: var(--surface2);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  
+}
+.hc1 { animation: float 4.0s ease-in-out infinite; }
+.hc2 { animation: float 4.0s ease-in-out infinite 0.5s; }
+.hc3 { animation: float 4.0s ease-in-out infinite 1.0s; }
+.hc4 { animation: float 4.0s ease-in-out infinite 1.5s; }
+.hc5 { animation: float 4.0s ease-in-out infinite 2.0s; }
+.hc6 { animation: float 4.0s ease-in-out infinite 2.5s; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ── STATS ── */
+.stats-bar {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px 0; gap: 0; flex-wrap: wrap;
+}
+.stat-item {
+  font-family: 'Kantumruy Pro', serif;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 56px;
+  
+}
+.stat-item strong {
+  font-family: 'Kantumruy Pro', serif;
+  font-size: 1.9rem; color: var(--accent); font-weight: 900;
+}
+.stat-item span { color: var(--muted); font-size: 0.88rem; margin-top: 2px; }
+.stat-sep { width: 1px; height: 44px; background: var(--border); }
+
+/* ── MENU SECTION ── */
+.menu-section {
+  max-width: 1300px; margin: 0 auto;
+  padding: 80px 36px 100px;
+}
+.menu-header {
+  display: flex; align-items: flex-end;
+  justify-content: space-between; flex-wrap: wrap;
+  gap: 20px; margin-bottom: 36px;
+}
+.eyebrow {
+  font-size: 40px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.menu-title {
+  font-family: 'Kantumruy Pro', serif;
+  font-size: 2.6
+  rem; font-weight: 900; line-height: 1.1;
+}
+.search-wrap {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 50px; padding: 13px 22px;
+  min-width: 300px; transition: border-color 0.2s;
+}
+.search-wrap:focus-within { border-color: var(--accent); }
+.search-wrap i { color: var(--muted); font-size: 0.9rem; }
+.search-wrap input {
+  background: none; border: none; outline: none;
+  color: var(--text); font-family: 'Hanuman', sans-serif;
+  font-size: 0.95rem; width: 100%;
+}
+.search-wrap input::placeholder { color: var(--muted); }
+
+/* Categories */
+.cats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 44px; }
+.cat {
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--muted); border-radius: 50px;
+  padding: 10px 22px; font-family: 'Hanuman', sans-serif;
+  font-size: 0.95rem; cursor: pointer;
+  transition: all 0.22s var(--ease);
+}
+.cat:hover { border-color: var(--accent); color: var(--text); }
+.cat.active {
+  background: var(--accent); border-color: var(--accent);
+  color: #0d0c0a; font-weight: 700;
+}
+
+/* ── FOOD GRID ── */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 24px;
+}
+
+/* 1. Ensure the card acts as a vertical column that fills its grid cell */
+.food-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Important: Makes cards in the same row the same height */
+  background: #121212; 
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* 2. Make the body grow to fill the remaining space */
+.food-body {
+  padding: 20px;
+  background: #121212;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* This is the "magic" line that stretches the black area */
+  padding: 20px; /* បន្ថែមគម្លាតខាងក្នុងឱ្យមើលទៅមិនណែនពេក */
+  background: #121212; /* ពណ៌ផ្ទាំងខ្មៅរបស់អ្នក */
+}
+
+/* 3. Push the price row to the absolute bottom */
+.food-footer-row {
+  margin-top: auto; /* This acts like a spring, pushing everything below it down */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+:root {
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Much softer */
+}
+
+.food-card:hover {
+  transform: scale(1.08);
+  overflow: hidden;
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── PLACEHOLDER IMAGE CARD ── */
+.food-thumb {
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+    width: 100%;
+    height: 300px; /* បង្កើនកម្ពស់ត្រង់នេះ ដើម្បីឱ្យផ្ទាំងខ្មៅចុះក្រោម */
+    overflow: hidden;
+    background: #1a1a1a; /* ពណ៌ផ្ទៃក្រោយពេលមិនទាន់ចេញរូបភាព */
+}
+
+.food-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ធ្វើឱ្យរូបភាពរីកពេញស្អាត */
+    display: block;
+}
+/* Each category gets its own gradient + pattern */
+.food-thumb[data-cat="pizza"]   { background: linear-gradient(135deg, #2a1a0a 0%, #3d2510 50%, #1a0f05 100%); }
+.food-thumb[data-cat="burger"]  { background: linear-gradient(135deg, #1a100a 0%, #2e180a 50%, #160d05 100%); }
+.food-thumb[data-cat="noodles"] { background: linear-gradient(135deg, #0a1a1a 0%, #0f2a25 50%, #051510 100%); }
+.food-thumb[data-cat="sushi"]   { background: linear-gradient(135deg, #0a0f1a 0%, #101825 50%, #050a15 100%); }
+.food-thumb[data-cat="khmer"]   { background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 50%, #130808 100%); }
+.food-thumb[data-cat="dessert"] { background: linear-gradient(135deg, #1a0a15 0%, #2a1020 50%, #120810 100%); }
+.food-thumb[data-cat="drinks"]  { background: linear-gradient(135deg, #0a0f1a 0%, #0e1a2d 50%, #060b14 100%); }
+
+/* Decorative rings behind the emoji */
+.food-thumb::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(245,166,35,0.12) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 40%);
+}
+.food-thumb {
+    height: 250px; /* បង្កើនពីតម្លៃចាស់ ដើម្បីរុញផ្ទាំងអត្ថបទចុះក្រោម */
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* កែសម្រួលផ្នែកក្បាលនៃកាតម្ហូប */
+.food-thumb {
+    height: 280px; /* បង្កើនកម្ពស់ (Height) ដើម្បីរុញផ្ទាំងខ្មៅខាងក្រោមឱ្យចុះមកក្រោម */
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a;
+}
+
+/* កំណត់ឱ្យរូបភាពរីកពេញផ្ទៃខាងលើ */
+.food-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* នេះជាចំណុចសំខាន់ដើម្បីឱ្យរូបភាពពេញស្អាតមិនយារ */
+    display: block;
+}
+/* បង្កើនទំហំអក្សរឈ្មោះម្ហូប */
+.food-name {
+    font-size: 1.6rem; /* បង្កើនពី 1.2rem ទៅ 1.6rem ឬតាមចិត្តចង់ */
+    font-weight: bold; /* ធ្វើឱ្យអក្សរដិត */
+    color: #ffffff;    /* ពណ៌ស */
+    margin-top: 10px;  /* បន្ថែមគម្លាតខាងលើបន្តិច */
+}
+
+/* បង្កើនទំហំអក្សរប្រភេទម្ហូប (បើសិនជាចង់) */
+.food-cat-label {
+    font-size: 1.1rem;
+    color: #ffb100; /* ពណ៌មាស */
+}
+
+/* លុបចោលរង្វង់មូលៗ (ប្រសិនបើមាន) ដើម្បីកុំឱ្យជាន់រូបភាព */
+.food-thumb::before,
+.food-thumb::after {
+    display: none;
+}
+
+/* បង្កើនទំហំតម្លៃម្ហូប */
+.food-price {
+    font-size: 1.5rem; /* ធ្វើឱ្យតម្លៃមើលទៅធំ និងច្បាស់ */
+    font-weight: 700;
+    color: #ffb100; /* ពណ៌មាស/លឿង */
+}
+
+/* បង្កើនទំហំការពិពណ៌នា (Description) */
+.food-desc {
+    font-size: 1rem; /* ប្តូរតាមតម្រូវការ (ឧទាហរណ៍: 0.9rem ទៅ 1rem) */
+    line-height: 1.5;
+    color: #b0b0b0;
+}
+
+/* បង្កើនទំហំអក្សរលើប៊ូតុងប្រភេទម្ហូប (Category Tags) */
+.cat {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+}
+.food-thumb::after {
+  content: '';
+  position: absolute;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  border: 1px solid rgba(245,166,35,0.12);
+  box-shadow: 0 0 0 28px rgba(245,166,35,0.06), 0 0 0 56px rgba(245,166,35,0.03);
+}
+
+.food-emoji img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.food-card:hover .food-emoji { transform: scale(1.12) rotate(-4deg); }
+
+.food-badge {
+  position: absolute; top: 14px; left: 14px; z-index: 3;
+  background: var(--accent); color: #0d0c0a;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 50px;
+}
+.food-badge.badge-new { background: #22c55e; }
+.food-badge.badge-chef { background: #a855f7; }
+.food-badge.badge-nation { background: var(--accent2); }
+.food-cat-label {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.food-cat-label[data-cat="pizza"]   { color: #f5a623; }
+.food-cat-label[data-cat="burger"]  { color: #fb923c; }
+.food-cat-label[data-cat="noodles"] { color: #34d399; }
+.food-cat-label[data-cat="sushi"]   { color: #60a5fa; }
+.food-cat-label[data-cat="khmer"]   { color: #f87171; }
+.food-cat-label[data-cat="dessert"] { color: #e879f9; }
+.food-cat-label[data-cat="drinks"]  { color: #38bdf8; }
+
+.food-name {
+  font-family: 'Kantumruy Pro', serif;
+  font-size: 1.18rem; font-weight: 700;
+  line-height: 1.3; margin-bottom: 6px;
+}
+.food-stars { font-size: 0.78rem; color: var(--accent); margin-bottom: 10px; }
+.food-stars span { color: var(--muted); margin-left: 4px; }
+.food-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; flex: 1; margin-bottom: 18px; font-family: 'Kantumruy Pro';}
+
+.food-footer-row {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-top: auto;
+}
+.food-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 900; color: var(--accent);
+}
+.food-price sup { font-size: 0.9rem; vertical-align: super; }
+
+.add-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--accent); border: none;
+  color: #0d0c0a; font-size: 1.5rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s var(--ease);
+  line-height: 1;
+}
+.add-btn:hover {
+  background: var(--accent2);
+  transform: scale(1.12) rotate(90deg);
+  box-shadow: 0 8px 24px rgba(245,166,35,0.4);
+}
+.add-btn:active { transform: scale(0.95); }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center; padding: 80px 0; grid-column: 1/-1;
+}
+.empty-state span { font-size: 4rem; display: block; margin-bottom: 16px; }
+.empty-state p { font-size: 1.2rem; color: var(--text); margin-bottom: 6px; }
+.empty-state small { color: var(--muted); }
+
+/* ── CART SIDEBAR ── */
+.cart-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(5px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+  font-family: 'Kantumruy Pro', sans-serif;
+}
+.cart-overlay.open { opacity: 1; pointer-events: all; }
+
+.cart-sidebar {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 3000;
+  width: 420px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.36s cubic-bezier(0.4,0,0.2,1);
+  font-family: 'Kantumruy Pro', sans-serif;
+}
+.cart-sidebar.open { transform: translateX(0); }
+
+.cart-header {
+  font-family: 'Kantumruy Pro', sans-serif;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 22px 26px;
+  border-bottom: 1px solid var(--border);
+
+}
+.cart-header-left { display: flex; align-items: center; gap: 12px; }
+.cart-header-left i { color: var(--accent); font-size: 1.2rem; }
+.cart-header h2 {
+  font-family: 'Kantumruy Pro', serif;
+  font-size: 1.35rem; font-weight: 900;
+}
+.close-cart {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1.2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.25s ease;
+}
+.close-cart:hover  { background: #ff4d4f;
+  color: #fff;
+  border-color: #ff4d4f;
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.4);}
+.close-cart:active {
+transform: scale(0.95);}
+
+.cart-items { flex: 1; overflow-y: auto; padding: 16px 26px; }
+.cart-empty {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  height: 240px; gap: 10px;
+}
+.cart-empty-icon { font-size: 3rem; }
+.cart-empty p { font-size: 1rem; color: var(--text); font-weight: 700; }
+.cart-empty span { font-size: 0.85rem; color: var(--muted); }
+
+.cart-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid var(--border);
+  animation: fadeUp 0.3s var(--ease);
+}
+.cart-item-thumb {
+  width: 52px; 
+  height: 52px; 
+  border-radius: var(--radius-sm);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-size: 1.8rem; 
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name {
+  font-weight: 700; font-size: 0.9rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+.cart-item-price { color: var(--accent); font-size: 0.85rem; font-weight: 700; }
+.cart-item-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.qty-btn {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.qty-btn:hover { border-color: var(--accent); color: var(--accent); }
+.qty-val { font-weight: 700; min-width: 22px; text-align: center; }
+
+.cart-footer { padding: 18px 26px; border-top: 1px solid var(--border); }
+.cart-row {
+  display: flex; justify-content: space-between;
+  font-size: 0.9rem; color: var(--muted);
+  margin-bottom: 10px;
+}
+.cart-divider { height: 1px; background: var(--border); margin: 12px 0; }
+.cart-total-row {
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--text); margin-bottom: 18px;
+}
+.checkout-btn {
+  width: 100%; border: none; border-radius: 50px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #0d0c0a; font-family: 'Hanuman', sans-serif;
+  font-size: 1rem; font-weight: 700; padding: 15px;
+  cursor: pointer; display: flex;
+  align-items: center; justify-content: center; gap: 10px;
+  transition: all 0.25s var(--ease);
+}
+.checkout-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(245,166,35,0.35); }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 30px; left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: var(--surface2);
+  border: 1px solid var(--accent);
+  color: var(--text);
+  padding: 13px 26px; border-radius: 50px;
+  font-size: 0.9rem; font-weight: 500; z-index: 300;
+  pointer-events: none; white-space: nowrap;
+  transition: transform 0.3s var(--ease), opacity 0.3s;
+  opacity: 0;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  margin-top: 0;
+}
+.footer-inner {
+  max-width: 1300px; margin: 0 auto;
+  padding: 64px 36px 48px;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 48px;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 900;
+  color: var(--accent); margin-bottom: 14px;
+}
+.brand-col p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 20px; }
+.socials { display: flex; gap: 12px; }
+.socials a {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--muted); text-decoration: none;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; transition: all 0.2s;
+}
+.socials a:hover { border-color: var(--accent); color: var(--accent); }
+.footer-col h4 {
+  font-family: 'Kantumruy Pro', serif;
+  font-size: 20px; margin-bottom: 18px; color: var(--text);
+  font-weight: bold;
+}
+.footer-col a {
+  display: block; color: var(--muted); text-decoration: none;
+  font-size: 0.9rem; margin-bottom: 10px; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--accent); }
+.footer-col p {
+  color: var(--muted); font-size: 0.9rem;
+  margin-bottom: 10px; display: flex; align-items: center; gap: 10px;
+}
+.footer-col p i { color: var(--accent); width: 14px; text-align: center; }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 20px 36px; text-align: center;
+  color: var(--muted2); font-size: 0.82rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1060px) {
+  .hero { grid-template-columns: 1fr; padding-top: 100px; text-align: left; }
+  .hero-cards { grid-template-columns: repeat(6, 90px); grid-template-rows: 90px; gap: 10px; }
+  .hcard span { font-size: 2rem; }
+  .hcard p { display: none; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none;}
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* រុញ Logo ទៅកណ្តាល និង ប៊ូតុងទៅសងខាង */
+    padding: 10px 20px;
+    height: 70px;
+    position: relative;
+}
+  .hero { padding: 90px 20px 40px; gap: 40px; }
+  .hero-cards { grid-template-columns: repeat(3, 80px); grid-template-rows: repeat(2, 80px); }
+  .stats-bar { gap: 0; }
+  .stat-item { padding: 16px 24px; }
+  .menu-section { padding: 60px 20px 80px; }
+  .menu-header { flex-direction: column; align-items: flex-start; }
+  .search-wrap { min-width: 100%; width: 100%; }
+  .cart-sidebar { width: 100%; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+}
+.socials a {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;   /* មូល */
+  
+  display: flex;        /* 👉 សំខាន់ */
+  align-items: center;  /* កណ្ដាលបញ្ឈរ */
+  justify-content: center; /* កណ្ដាលផ្ដេក */
+
+  font-size: 26px;      /* បង្កើន icon */
+}
+
+.user-sidebar.active {
+    left: 0; /* បង្ហាញចេញមក */
+}
+
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    margin-bottom: 10px;
+}
+
+.role-badge {
+    font-size: 0.7rem;
+    background: #e0e0e0;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.sidebar-menu li {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.sidebar-menu li:hover {
+    background: var(--surface2);
+    color: var(--accent);
+}
+
+.toggle-role-btn {
+    margin-top: 10px;
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none; /* លាក់ទុកសិន */
+    z-index: 1500;
+}
+
+.sidebar-overlay.active {
+    display: block; /* បង្ហាញពេល active */
+}
+.user-sidebar {
+    position: fixed;
+    left: -300px; /* លាក់ទុកសិន */
+    top: 0;
+    width: 280px;
+    height: 100%;
+    background: #fff;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    z-index: 2000;
+    padding: 20px;
+}
+#cartItems {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 26px;
+}
+
+#cartFooter {
+  padding: 18px 26px;
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 768px) {
+  .cart-sidebar {
+    width: 100%;
+  }
+}
