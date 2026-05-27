@@ -15,7 +15,7 @@
       <button class="btn-primary" onclick="document.getElementById('menuSection').scrollIntoView({behavior:'smooth'})">
         <i class="fa fa-bowl-food"></i> មើលម៉ឺនុយ
       </button>
-      <button class="btn-ghost"><i class="fa fa-phone"></i> ទំនាក់ទំនង</button>
+      <button class="btn-ghost"><i class="fa fa-phone"></i> <table>ទំនាក់ទំនង</table></button>
     </div>
   </div>
   <div class="hero-right">
@@ -70,5 +70,9 @@
     <small>សូមព្យាយាមស្វែងរកម្ដងទៀត</small>
   </div>
 </section>
+
+<script>
+    window.isAdminUser = @json(auth()->check() && auth()->user()->role === 'admin');
+</script>
 
 @endsection

@@ -40,7 +40,12 @@ class AuthController extends Controller
                 'user_image' => $user->profile_image ?? 'default.jfif',
             ]);
 
-            return redirect()->route('home');
+            // Redirect admins to admin dashboard
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+
+        return redirect()->route('home');
         }
 
         return back()->withErrors([
@@ -70,7 +75,7 @@ class AuthController extends Controller
         $user = User::create([
             'name'          => $validated['fullname'],
             'email'         => $validated['email'],
-            'password'      => Hash::make($validated['password']),
+            'password'      => $validated['password'],
             'role'          => 'user',
             'profile_image' => 'default.jfif',
         ]);
@@ -97,6 +102,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('home');
+        return redirect()->route('login');
     }
 }

@@ -18,8 +18,6 @@ class OrderController extends Controller
     public function __construct(TelegramService $telegram)
     {
         $this->telegram = $telegram;
-        // FIX: use middleware() correctly (compatible with Laravel 9, 10, 11)
-        $this->middleware('auth');
     }
 
     /**

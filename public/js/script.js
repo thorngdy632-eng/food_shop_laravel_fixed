@@ -7,14 +7,14 @@ const BASE_URL = window.APP_URL || '';
 
 // ===== ទិន្នន័យម្ហូប =====
 const foods = [
-  { id: 30, name: "Chocolate Cake", category: "dessert", emoji: "", image: "assets/Dessert/Chocolate.jpg", price: 6.99, desc: "នំសូកូឡា មានរសជាតិផ្អែមឆ្ងាញ់", rating: 4.8, reviews: 120, badge: "ថ្មី" },
-  { id: 1, name: "អាម៉ុក ត្រី", category: "khmer", emoji: "", image: "assets/Khmer_food/Amok.jpg", price: 9.99, desc: "ម្ហូបជាតិដ៏ល្បី — ត្រីស្ងោរក្នុងខ្ទិ៍ គ្រឿង ស្លឹកក្រូចសើច និងម្ទេស។", rating: 4.9, reviews: 480, badge: "ម្ហូបជាតិ" },
-  { id: 2, name: "បាយសាច់ជ្រូក", category: "khmer", emoji: "", image: "assets/Khmer_food/Bay.jpg", price: 7.50, desc: "បាយសក្តៅៗ ជាមួយសាច់ជ្រូកអាំងទន់ៗ និងជ្រក់ត្រសក់ — អាហារពេលព្រឹកដ៏ល្អបំផុត។", rating: 4.8, reviews: 390, badge: "ពេញនិយម" },
-  { id: 5, name: "ភីហ្សា ម៉ាហ្គារីតា", category: "pizza", emoji: "", image: "assets/Pizza/Margherita.jpg", price: 12.99, desc: "ទឹកប៉េងប៉ោះ San Marzano ឈីស mozzarella ស្រស់ និងស្លឹក basil។", rating: 4.8, reviews: 320, badge: "ពេញនិយម" },
-  { id: 8, name: "បឺហ្គឺ Smash ពីរជាន់", category: "burger", emoji: "", image: "assets/Burger/Cheeseburger.jpg", price: 13.99, desc: "សាច់គោ smash ពីរជាន់ ឈីស American ត្រសក់ និងទឹកជ្រលក់ពិសេស។", rating: 4.9, reviews: 512, badge: "លក់ដាច់" },
-  { id: 11, name: "រ៉ាម៉ែន Tonkotsu", category: "noodles", emoji: "", image: "assets/Boiled_noodle/Glassnoodles.jpg", price: 14.50, desc: "ស៊ុបឆ្អឹងជ្រូកដ៏ឈ្ងុយឆ្ងាញ់ សាច់ជ្រូកបំពង និងស៊ុតជ័រពងទា។", rating: 4.9, reviews: 430, badge: "គេចូលចិត្ត" },
-  { id: 14, name: "រ៉ូល Salmon Dragon", category: "sushi", emoji: "", image: "assets/Sushi/Salmonnigiri.jpg", price: 18.99, desc: "បង្គា tempura ខាងក្នុង ស្រោបដោយសាច់ត្រី salmon ស្រស់ និង avocado។", rating: 4.9, reviews: 295, badge: "ថ្មី" },
-  { id: 21, name: "កាហ្វេត្រជាក់", category: "drinks", emoji: "", image: "assets/Drink/Icedcoffee.jpg", price: 4.99, desc: "គ្រាប់កាហ្វេលីងថ្មីៗ រសជាតិដិតឈ្ងុយ រលោង ជួយឱ្យស្បែកកាយស្រស់ស្រាយ។", rating: 4.9, reviews: 520, badge: "លក់ដាច់" },
+  { id: 1, name: "Chocolate Cake", category: "dessert", emoji: "", image: "assets/Dessert/Chocolate.jpg", price: 6.99, desc: "នំសូកូឡា មានរសជាតិផ្អែមឆ្ងាញ់", rating: 4.8, reviews: 120, badge: "ថ្មី" },
+  { id: 2, name: "អាម៉ុក ត្រី", category: "khmer", emoji: "", image: "assets/Khmer_food/Amok.jpg", price: 9.99, desc: "ម្ហូបជាតិដ៏ល្បី — ត្រីស្ងោរក្នុងខ្ទិ៍ គ្រឿង ស្លឹកក្រូចសើច និងម្ទេស។", rating: 4.9, reviews: 480, badge: "ម្ហូបជាតិ" },
+  { id: 3, name: "បាយសាច់ជ្រូក", category: "khmer", emoji: "", image: "assets/Khmer_food/Bay.jpg", price: 7.50, desc: "បាយសក្តៅៗ ជាមួយសាច់ជ្រូកអាំងទន់ៗ និងជ្រក់ត្រសក់ — អាហារពេលព្រឹកដ៏ល្អបំផុត។", rating: 4.8, reviews: 390, badge: "ពេញនិយម" },
+  { id: 4, name: "ភីហ្សា ម៉ាហ្គារីតា", category: "pizza", emoji: "", image: "assets/Pizza/Margherita.jpg", price: 12.99, desc: "ទឹកប៉េងប៉ោះ San Marzano ឈីស mozzarella ស្រស់ និងស្លឹក basil។", rating: 4.8, reviews: 320, badge: "ពេញនិយម" },
+  { id: 5, name: "បឺហ្គឺ Smash ពីរជាន់", category: "burger", emoji: "", image: "assets/Burger/Cheeseburger.jpg", price: 13.99, desc: "សាច់គោ smash ពីរជាន់ ឈីស American ត្រសក់ និងទឹកជ្រលក់ពិសេស។", rating: 4.9, reviews: 512, badge: "លក់ដាច់" },
+  { id: 6, name: "រ៉ាម៉ែន Tonkotsu", category: "noodles", emoji: "", image: "assets/Boiled_noodle/Glassnoodles.jpg", price: 14.50, desc: "ស៊ុបឆ្អឹងជ្រូកដ៏ឈ្ងុយឆ្ងាញ់ សាច់ជ្រូកបំពង និងស៊ុតជ័រពងទា។", rating: 4.9, reviews: 430, badge: "គេចូលចិត្ត" },
+  { id: 7, name: "រ៉ូល Salmon Dragon", category: "sushi", emoji: "", image: "assets/Sushi/Salmonnigiri.jpg", price: 18.99, desc: "បង្គា tempura ខាងក្នុង ស្រោបដោយសាច់ត្រី salmon ស្រស់ និង avocado។", rating: 4.9, reviews: 295, badge: "ថ្មី" },
+  { id: 8, name: "កាហ្វេត្រជាក់", category: "drinks", emoji: "", image: "assets/Drink/Icedcoffee.jpg", price: 4.99, desc: "គ្រាប់កាហ្វេលីងថ្មីៗ រសជាតិដិតឈ្ងុយ រលោង ជួយឱ្យស្បែកកាយស្រស់ស្រាយ។", rating: 4.9, reviews: 520, badge: "លក់ដាច់" },
 ];
 
 const catLabels = {
@@ -69,6 +69,8 @@ function renderFoods(items) {
       ? `<img src="${f.image}" class="food-img-full" alt="${f.name}" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">`
       : `<div class="food-emoji">${f.emoji}</div>`;
 
+    const addBtn = window.isAdminUser ? '' : `<button class="add-btn" onclick="addToCart(${f.id})" title="បន្ថែមទៅកន្ត្រក">+</button>`;
+
     return `
     <div class="food-card" style="animation-delay:${i * 0.045}s">
       <div class="food-thumb" data-cat="${f.category}">
@@ -82,7 +84,7 @@ function renderFoods(items) {
         <p class="food-desc">${f.desc}</p>
         <div class="food-footer-row">
           <div class="food-price"><sup>$</sup>${f.price.toFixed(2)}</div>
-          <button class="add-btn" onclick="addToCart(${f.id})" title="បន្ថែមទៅកន្ត្រក">+</button>
+          ${addBtn}
         </div>
       </div>
     </div>`;
@@ -131,6 +133,10 @@ function assetUrl(path) {
 // ───── CART ─────
 
 function addToCart(id) {
+  if (window.isAdminUser) {
+    toast('❌ Admin មិនអាចកម្ម៉ង់ទំនិញបានទេ');
+    return;
+  }
   fetch(BASE_URL + '/cart/add', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': csrfToken },
@@ -150,7 +156,7 @@ function addToCart(id) {
   })
   .catch(err => {
     console.error("Cart Error:", err);
-    toast("❌ មិនអាចបន្ថែមទៅកន្ត្រកបាន");
+    toast("❌ មិនអាចថែមទំនិញទៅកន្ត្រកបានទេ សូមព្យាយាមម្តងទៀត");
   });
 }
 

@@ -40,4 +40,11 @@ return [
         'chat_id'   => env('TELEGRAM_CHAT_ID', ''),
     ],
 
+    'opencode_ai' => [
+        'api_key'  => env('OPENCODE_AI_API_KEY', ''),
+        'base_url' => env('OPENCODE_AI_BASE_URL', 'https://opencode.ai/zen/v1'),
+        'model'    => env('OPENCODE_AI_MODEL', 'gpt-5.4-mini'),
+        'timeout'  => env('OPENCODE_AI_TIMEOUT', 30),
+    ],
+
 ];

@@ -5,73 +5,72 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 class ProfileController extends Controller
 {
-    /**
-     * POST /profile/update — Update user's name, bio, profile image, and password.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function show()
+    {
+        $user = Auth::user();
+        $orders = $user->orders()->latest()->limit(5)->get();
+        return view('profile.index', compact('user', 'orders'));
+    }
+
     public function update(Request $request)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         $user = Auth::user();
 
         $request->validate([
             'fullname'      => 'required|string|max:255',
+            'email'         => 'required|email|max:255|unique:users,email,' . $user->id,
+            'phone'         => 'nullable|string|max:20',
             'bio'           => 'nullable|string|max:500',
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:3072',
             'old_password'  => 'nullable|required_with:new_password',
-            'new_password'  => 'nullable|string|min:6|different:old_password',
+            'new_password'  => 'nullable|string|min:6|confirmed',
         ]);
 
-        // ── Handle profile image upload ──
         $imageName = $user->profile_image ?? 'default.jfif';
+
         if ($request->hasFile('profile_image')) {
             $file = $request->file('profile_image');
-            $imageName = time() . '_' . uniqid() . '.' . $file->extension();
-            $file->move(public_path('assets/profiles'), $imageName);
+            $imageName = 'profile_' . time() . '_' . uniqid() . '.' . $file->extension();
+            $file->storeAs('public/profile_images', $imageName);
 
-            // Delete old non-default image
             if ($user->profile_image && $user->profile_image !== 'default.jfif') {
-                $oldPath = public_path('assets/profiles/' . $user->profile_image);
-                if (file_exists($oldPath)) {
-                    unlink($oldPath);
+                $oldPath = 'public/profile_images/' . $user->profile_image;
+                if (Storage::exists($oldPath)) {
+                    Storage::delete($oldPath);
                 }
             }
         }
 
-        // ── Handle password change ──
-        $canUpdate = true;
         if ($request->filled('new_password')) {
-            if ($request->filled('old_password') && Hash::check($request->old_password, $user->password)) {
-                $user->password = Hash::make($request->new_password);
-            } else {
-                $canUpdate = false;
+            if (!Hash::check($request->old_password, $user->password)) {
                 return back()->with('error', 'លេខសម្ងាត់ចាស់មិនត្រឹមត្រូវទេ!');
             }
+            $user->password = Hash::make($request->new_password);
         }
 
-        // ── Update profile fields ──
-        if ($canUpdate) {
-            $user->name = $request->fullname;
-            $user->bio = $request->bio ?? '';
-            $user->profile_image = $imageName;
-            $user->save();
+        $user->name = $request->fullname;
+        $user->email = $request->email;
+        $user->phone = $request->phone ?? '';
+        $user->bio = $request->bio ?? '';
+        $user->profile_image = $imageName;
+        $user->save();
 
-            // Refresh session
-            session([
-                'user_name'  => $user->name,
-                'user_bio'   => $user->bio,
-                'user_image' => $imageName,
-            ]);
+        session([
+            'user_name'  => $user->name,
+            'user_bio'   => $user->bio,
+            'user_image' => $imageName,
+        ]);
 
-            return redirect()->route('home')->with('success', 'ព័ត៌មានរបស់អ្នកត្រូវបានធ្វើបច្ចុប្បន្នភាព។');
-        }
-
-        return back();
+        return redirect()->route('profile.index')->with('success', 'ព័ត៌មានរបស់អ្នកត្រូវបានធ្វើបច្ចុប្បន្នភាព។');
     }
 }

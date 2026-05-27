@@ -45,8 +45,22 @@
             <span style="color: #fff; font-weight: 900; font-size: 1.5rem;">$<span id="drawer-cart-total">{{ number_format($total, 2) }}</span></span>
         </div>
         
-        <a href="{{ route('checkout.index') }}" style="display: block; background: #4dff47; color: #000; text-align: center; padding: 14px; border-radius: 30px; text-decoration: none; font-weight: bold; font-family: 'Noto Sans Khmer'; font-size: 1rem;">
-            បន្តទៅកាន់ការទូទាត់ប្រាក់ <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i>
-        </a>
+        {{-- ── ពិនិត្យលក្ខខណ្ឌ Login ── --}}
+        @auth
+            {{-- បើបាន Login រួចរាល់៖ បង្ហាញប៊ូតុងពណ៌បៃតងទៅកាន់ទំព័រ Checkout --}}
+            <a href="{{ route('checkout.index') }}" style="display: block; background: #4dff47; color: #000; text-align: center; padding: 14px; border-radius: 30px; text-decoration: none; font-weight: bold; font-family: 'Noto Sans Khmer'; font-size: 1rem; transition: background 0.2s;">
+                បន្តទៅកាន់ការទូទាត់ប្រាក់ <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i>
+            </a>
+        @else
+            {{-- បើមិនទាន់ Login ទេ៖ បង្ហាញសារព្រមាន និងប៊ូតុងពណ៌លឿងទៅកាន់ទំព័រ Login --}}
+            <div style="text-align: center; padding: 5px 0; font-family: 'Noto Sans Khmer', sans-serif;">
+                <p style="color: #ff4d4f; font-size: 0.85rem; margin-bottom: 12px; font-weight: bold;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> សូមចូលគណនីជាមុនសិន ទើបអាចបញ្ជាទិញបាន!
+                </p>
+                <a href="{{ route('login') }}" style="display: block; background: #ffaa00; color: #000; text-align: center; padding: 14px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1rem; transition: background 0.2s;">
+                    <i class="fa-solid fa-right-to-bracket" style="margin-right: 5px;"></i> ចូលគណនី / Login
+                </a>
+            </div>
+        @endauth
     </div>
 @endif
