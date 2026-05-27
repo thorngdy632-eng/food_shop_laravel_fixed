@@ -171,7 +171,7 @@
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    {{─ ─── Card 1: Generate Food Description ─── ──}}
+    {{-- Card 1: Generate Food Description --}}
     <div class="ai-card">
         <div class="ai-card-header flex items-center justify-between flex-wrap gap-2">
             <h3 style="font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.6rem;">
@@ -207,7 +207,7 @@
         </div>
     </div>
 
-    {{─ ─── Card 2: Order Trends Analysis ─── ──}}
+    {{-- Card 2: Order Trends Analysis --}}
     <div class="ai-card">
         <div class="ai-card-header flex items-center justify-between flex-wrap gap-2">
             <h3 style="font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.6rem;">
@@ -227,7 +227,7 @@
         </div>
     </div>
 
-    {{─ ─── Card 3: Smart Customer Reply ─── ──}}
+    {{-- Card 3: Smart Customer Reply --}}
     <div class="ai-card">
         <div class="ai-card-header flex items-center justify-between flex-wrap gap-2">
             <h3 style="font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.6rem;">
@@ -259,7 +259,7 @@
         </div>
     </div>
 
-    {{─ ─── Card 4: Custom AI Prompt ─── ──}}
+    {{-- Card 4: Custom AI Prompt --}}
     <div class="ai-card">
         <div class="ai-card-header flex items-center justify-between flex-wrap gap-2">
             <h3 style="font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.6rem;">
